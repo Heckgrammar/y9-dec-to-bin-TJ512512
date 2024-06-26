@@ -18,39 +18,59 @@ namespace Y9_DEC_TO_BIN_SKELETON
             Console.WriteLine(MyIntAsString);
             string concatString = String.Concat("This is a", " concatenated string");
             Console.WriteLine(concatString);
-
             //MAIN:  NUMBER CONVERSION PROGRAM
-            Console.WriteLine("Enter the denary number");
             numberConversion();
 
 
             //static void means the function will not return a value so it does not need a data type 
             //...this function DOES return a value so the method must have a data type
-             void numberConversion()
+            void numberConversion()
             {
+                bool integer = false;
+                string NumEntered = null;
+                while (integer == false)
+                {
+                    int s = 0;
+                    NumEntered = null;
+                    Console.WriteLine("Enter a whole denary number that is less than 10 digits");
+                    NumEntered = Console.ReadLine();
+                    integer = int.TryParse(NumEntered, out s);
+                }
                 int[] remainder = { 5656 };
-                int denary = Convert.ToInt32(Console.ReadLine());
+                int denary = Convert.ToInt32(NumEntered);
                 int counter = 0;
                 while (denary > 0)
                 {
                     Array.Resize(ref remainder, counter + 1);
                     remainder[counter] = denary % 2;
-                    Console.WriteLine(remainder[counter]);
+                    //Console.WriteLine(remainder[counter]);
                     denary /= 2;
+                    //Console.WriteLine(denary);
                     counter++;
+                    //Console.WriteLine(counter);
                 }
-                int[] binary = { };
-                Array.Resize(ref binary, remainder.Length);
-                Array.Reverse(remainder);
-                for (int i = 0; i < remainder.Length; i++)
+                if (remainder[0] == 5656)
                 {
-                    binary[i] = remainder[i];
+                    Console.WriteLine(0);
                 }
-                for (int i = 0; i < binary.Length; i++)
+                else
                 {
-                    Console.Write(binary[i]);
+
+
+                    int[] binary = { };
+                    Array.Resize(ref binary, remainder.Length);
+                    Array.Reverse(remainder);
+                    for (int i = 0; i < remainder.Length; i++)
+                    {
+                        binary[i] = remainder[i];
+                        //Console.WriteLine(binary[i]);
+                    }
+                    for (int i = 0; i < binary.Length; i++)
+                    {
+                        Console.Write(binary[i]);
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
             }
         }
     }
